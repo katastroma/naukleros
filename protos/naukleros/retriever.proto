@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package naukleros;
+
+option go_package = "github.com/katastroma/naukleros";
+
+// RetrieverService fetches source content and determines fetch relevance.
+service RetrieverService {
+  // ShouldFetch determines if a webhook event requires a pipeline run given
+  // the tenant's tracking configuration.
+  rpc ShouldFetch(ShouldFetchRequest) returns (ShouldFetchResponse);
+
+  // Fetch retrieves source content from a repository.
+  rpc Fetch(FetchRequest) returns (stream FetchResponse);
+}
+
+// Event and tracking data for relevance check.
+message ShouldFetchRequest {
+  string repo_url = 1;
+  string ref = 2;
+  string before = 3;
+  string after = 4;
+  string tracked_revision = 5;
+  string tracked_path = 6;
+}
+
+message ShouldFetchResponse {
+  bool should_fetch = 1;
+}
+
+message FetchRequest {
+  string repo_url = 1;
+  string revision = 2;
+  string path = 3;
+
+  oneof credential {
+    GitHubAppCredential github_app = 10;
+    BasicAuthCredential basic_auth = 11;
+  }
+}
+
+// Streamed source content.
+message FetchResponse {
+  bytes data = 1;
+}
+
+message GitHubAppCredential {
+  int64 app_id = 1;
+  int64 installation_id = 2;
+  string private_key = 3;
+}
+
+message BasicAuthCredential {
+  string username = 1;
+  string password = 2;
+}
