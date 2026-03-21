@@ -20,7 +20,7 @@ message ShouldFetchRequest {
   string ref = 2;
   string before = 3;
   string after = 4;
-  string tracked_revision = 5;
+  string tracked_ref = 5;
   string tracked_path = 6;
 }
 
@@ -30,7 +30,7 @@ message ShouldFetchResponse {
 
 message FetchRequest {
   string repo_url = 1;
-  string revision = 2;
+  string ref = 2;
   string path = 3;
 
   oneof credential {
