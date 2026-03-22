@@ -1,11 +1,12 @@
 # Naukleros
 
-Retriever interface for [katastroma](https://github.com/katastroma). Defines the
-service contract for matching source events against registered identities and
-fetching source content.
+Shared types for source events and source identities in
+[katastroma](https://github.com/katastroma).
 
-## Operations
+A source event describes what changed (a git push, an S3 object update, an OCI
+tag push, a filesystem change). A source identity describes what to track within
+a source (a ref and path, a bucket prefix, an OCI repo, a folder). Naukleros
+implementations match incoming events against registered identities to determine
+whether a pipeline run is needed, then fetch the matched source.
 
-- **Match** — given a source event, find the matching source identity. Returns
-  the identity if matched, empty if not.
-- **Fetch** — given a source identity, retrieve the source content.
+New source types are added as variants in SourceEvent and SourceIdentity.
