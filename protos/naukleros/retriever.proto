@@ -4,24 +4,22 @@ package naukleros;
 
 option go_package = "github.com/katastroma/naukleros";
 
-message Source {
-  string url = 1;
-}
-
-message GitEvent {
+message GitHubEvent {
   string ref = 1;
   string before = 2;
   string after = 3;
 }
 
 message S3Event {
-  string bucket_name = 1;
-  string object_key = 2;
+  string bucket_url = 1;
+  string bucket_name = 2;
+  string object_key = 3;
 }
 
 message OCIEvent {
-  string repo = 1;
-  string tag = 2;
+  string registry_url = 1;
+  string repo = 2;
+  string tag = 3;
 }
 
 message FilesystemEvent {
@@ -29,10 +27,8 @@ message FilesystemEvent {
 }
 
 message SourceEvent {
-  Source source = 1;
-
   oneof event {
-    GitEvent git = 2;
+    GitHubEvent git = 2;
     S3Event s3 = 3;
     OCIEvent oci = 4;
     FilesystemEvent fs = 5;
@@ -40,26 +36,28 @@ message SourceEvent {
 }
 
 message GitIdentity {
-  string ref = 1;
-  string path = 2;
-}
-
-message OCIIdentity {
-  string repo = 1;
-}
-
-message FilesystemIdentity {
-  string folder = 1;
+  string repo_url = 1;
+  string ref = 2;
+  string path = 3;
 }
 
 message S3Identity {
-  string bucket_name = 1;
-  string prefix = 2;
+  string bucket_url = 1;
+  string bucket_name = 2;
+  string prefix = 3;
+}
+
+message OCIIdentity {
+  string registry_url = 1;
+  string repo = 2;
+}
+
+message FilesystemIdentity {
+  string server_url = 1;
+  string folder = 2;
 }
 
 message SourceIdentity {
-  Source source = 1;
-
   oneof identity {
     GitIdentity git = 2;
     S3Identity s3 = 3;
