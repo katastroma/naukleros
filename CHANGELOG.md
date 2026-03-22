@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.1.6 - 2026-03-22
+#### Bug Fixes
+- provider-specific messages - (660c6ee) - Nathan Blair
+
+- - -
+
 ## 0.1.5 - 2026-03-22
 #### Bug Fixes
 - rename gitopsidentity to gitidentity - (3c9dd8c) - Nathan Blair
