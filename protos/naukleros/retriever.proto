@@ -39,7 +39,7 @@ message SourceEvent {
   }
 }
 
-message GitOpsIdentity {
+message GitIdentity {
   string ref = 1;
   string path = 2;
 }
@@ -61,7 +61,7 @@ message SourceIdentity {
   Source source = 1;
 
   oneof identity {
-    GitOpsIdentity git = 2;
+    GitIdentity git = 2;
     S3Identity s3 = 3;
     OCIIdentity oci = 4;
     FilesystemIdentity fs = 5;
