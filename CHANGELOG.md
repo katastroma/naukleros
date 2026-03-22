@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.1.3 - 2026-03-22
+#### Bug Fixes
+- add gitops identity - (abe21e7) - Nathan Blair
+
+- - -
+
 ## 0.1.2 - 2026-03-21
 #### Bug Fixes
 - don't use oneof - (e5c17bb) - Nathan Blair
