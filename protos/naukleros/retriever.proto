@@ -28,18 +28,11 @@ message ShouldFetchResponse {
   bool should_fetch = 1;
 }
 
-message FetchRequest {
+// GitOpsIdentity identifies a source to fetch.
+message GitOpsIdentity {
   string repo_url = 1;
   string ref = 2;
   string path = 3;
-
-  GitHubAppCredential github_app = 10;
-  BasicAuthCredential basic_auth = 11;
-}
-
-// Streamed source content.
-message FetchResponse {
-  bytes data = 1;
 }
 
 message GitHubAppCredential {
@@ -51,4 +44,22 @@ message GitHubAppCredential {
 message BasicAuthCredential {
   string username = 1;
   string password = 2;
+}
+
+// RepoCredential holds authentication for accessing a repository.
+message RepoCredential {
+  oneof credential {
+    GitHubAppCredential github_app = 1;
+    BasicAuthCredential basic_auth = 2;
+  }
+}
+
+message FetchRequest {
+  GitOpsIdentity identity = 1;
+  RepoCredential credential = 2;
+}
+
+// Streamed source content.
+message FetchResponse {
+  bytes data = 1;
 }
