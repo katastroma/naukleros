@@ -4,15 +4,6 @@ package naukleros;
 
 option go_package = "github.com/katastroma/naukleros";
 
-// RetrieverService fetches source content and determines fetch relevance.
-service RetrieverService {
-  // Match determines if a source event matches a GitOps Identity.
-  rpc Match(MatchRequest) returns (MatchResponse);
-
-  // Fetch retrieves source content from a repository.
-  rpc Fetch(FetchRequest) returns (stream FetchResponse);
-}
-
 message Source {
   string url = 1;
 }
@@ -48,11 +39,6 @@ message SourceEvent {
   }
 }
 
-// Event and tracking data for relevance check.
-message MatchRequest {
-  SourceEvent event = 1;
-}
-
 message GitOpsIdentity {
   string ref = 1;
   string path = 2;
@@ -80,17 +66,4 @@ message SourceIdentity {
     OCIIdentity oci = 4;
     FilesystemIdentity fs = 5;
   }
-}
-
-message MatchResponse {
-  SourceIdentity source_identity = 1;
-}
-
-message FetchRequest {
-  SourceIdentity identity = 1;
-}
-
-// Streamed source content.
-message FetchResponse {
-  bytes data = 1;
 }
