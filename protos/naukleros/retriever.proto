@@ -6,57 +6,88 @@ option go_package = "github.com/katastroma/naukleros";
 
 // RetrieverService fetches source content and determines fetch relevance.
 service RetrieverService {
-  // ShouldFetch determines if a webhook event requires a pipeline run given
-  // the tenant's tracking configuration.
-  rpc ShouldFetch(ShouldFetchRequest) returns (ShouldFetchResponse);
+  // Match determines if a source event matches a GitOps Identity.
+  rpc Match(MatchRequest) returns (MatchResponse);
 
   // Fetch retrieves source content from a repository.
   rpc Fetch(FetchRequest) returns (stream FetchResponse);
 }
 
-// Event and tracking data for relevance check.
-message ShouldFetchRequest {
-  string repo_url = 1;
-  string ref = 2;
-  string before = 3;
-  string after = 4;
-  string tracked_ref = 5;
-  string tracked_path = 6;
+message Source {
+  string url = 1;
 }
 
-message ShouldFetchResponse {
-  bool should_fetch = 1;
+message GitEvent {
+  string ref = 1;
+  string before = 2;
+  string after = 3;
 }
 
-// GitOpsIdentity identifies a source to fetch.
-message GitOpsIdentity {
-  string repo_url = 1;
-  string ref = 2;
-  string path = 3;
+message S3Event {
+  string bucket_name = 1;
+  string object_key = 2;
 }
 
-message GitHubAppCredential {
-  int64 app_id = 1;
-  int64 installation_id = 2;
-  string private_key = 3;
+message OCIEvent {
+  string repo = 1;
+  string tag = 2;
 }
 
-message BasicAuthCredential {
-  string username = 1;
-  string password = 2;
+message FilesystemEvent {
+  string path = 1;
 }
 
-// RepoCredential holds authentication for accessing a repository.
-message RepoCredential {
-  oneof credential {
-    GitHubAppCredential github_app = 1;
-    BasicAuthCredential basic_auth = 2;
+message SourceEvent {
+  Source source = 1;
+
+  oneof event {
+    GitEvent git = 2;
+    S3Event s3 = 3;
+    OCIEvent oci = 4;
+    FilesystemEvent fs = 5;
   }
 }
 
+// Event and tracking data for relevance check.
+message MatchRequest {
+  SourceEvent event = 1;
+}
+
+message GitOpsIdentity {
+  string ref = 1;
+  string path = 2;
+}
+
+message OCIIdentity {
+  string repo = 1;
+}
+
+message FilesystemIdentity {
+  string folder = 1;
+}
+
+message S3Identity {
+  string bucket_name = 1;
+  string prefix = 2;
+}
+
+message SourceIdentity {
+  Source source = 1;
+
+  oneof identity {
+    GitOpsIdentity git = 2;
+    S3Identity s3 = 3;
+    OCIIdentity oci = 4;
+    FilesystemIdentity fs = 5;
+  }
+}
+
+message MatchResponse {
+  SourceIdentity source_identity = 1;
+}
+
 message FetchRequest {
-  GitOpsIdentity identity = 1;
-  RepoCredential credential = 2;
+  SourceIdentity identity = 1;
 }
 
 // Streamed source content.
