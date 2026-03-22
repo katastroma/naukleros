@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.1.4 - 2026-03-22
+#### Bug Fixes
+- naukleros doesn't need to define a service as nothing calls it - (61b6832) - Nathan Blair
+- naukleros becomes a generic source facilitator - (d59efdc) - Nathan Blair
+#### Documentation
+- update docs for non-service focus - (15fa331) - Nathan Blair
+
+- - -
+
 ## 0.1.3 - 2026-03-22
 #### Bug Fixes
 - add gitops identity - (abe21e7) - Nathan Blair
