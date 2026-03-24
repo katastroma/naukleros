@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.2.0 - 2026-03-24
+#### Features
+- bring back retrieverservice - (edd79cc) - Nathan Blair
+#### Continuous Integration
+- use release-buf-proto CD workflow - (9cb6e26) - Nathan Blair
+#### Miscellaneous Chores
+- don't require protoc* - (398d594) - Nathan Blair
+- go mod tidy - (4f09796) - Nathan Blair
+- allow buf to generate proto output - (2b3982f) - Nathan Blair
+
+- - -
+
 ## 0.1.6 - 2026-03-22
 #### Bug Fixes
 - provider-specific messages - (660c6ee) - Nathan Blair
