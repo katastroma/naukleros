@@ -6,18 +6,19 @@ option go_package = "github.com/katastroma/naukleros";
 
 // RetrieverService is the API contract for source handlers.
 service RetrieverService {
+  // Retrieve allows manual source retrieval dispatch
   rpc Retrieve(RetrieveRequest) returns (RetrieveResponse);
+  // Replay a source retrieval from a previous run
   rpc Replay(ReplayRequest) returns (ReplayResponse);
 }
 
 // TODO
 message RetrieveRequest {}
 
-// TODO
 message RetrieveResponse {}
 
-// TODO
-message ReplayRequest {}
+message ReplayRequest {
+  string run_id = 1;
+}
 
-// TODO
 message ReplayResponse {}
