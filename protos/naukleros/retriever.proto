@@ -4,64 +4,20 @@ package naukleros;
 
 option go_package = "github.com/katastroma/naukleros";
 
-message GitHubEvent {
-  string ref = 1;
-  string before = 2;
-  string after = 3;
+// RetrieverService is the API contract for source handlers.
+service RetrieverService {
+  rpc Retrieve(RetrieveRequest) returns (RetrieveResponse);
+  rpc Replay(ReplayRequest) returns (ReplayResponse);
 }
 
-message S3Event {
-  string bucket_url = 1;
-  string bucket_name = 2;
-  string object_key = 3;
-}
+// TODO
+message RetrieveRequest {}
 
-message OCIEvent {
-  string registry_url = 1;
-  string repo = 2;
-  string tag = 3;
-}
+// TODO
+message RetrieveResponse {}
 
-message FilesystemEvent {
-  string path = 1;
-}
+// TODO
+message ReplayRequest {}
 
-message SourceEvent {
-  oneof event {
-    GitHubEvent git = 2;
-    S3Event s3 = 3;
-    OCIEvent oci = 4;
-    FilesystemEvent fs = 5;
-  }
-}
-
-message GitIdentity {
-  string repo_url = 1;
-  string ref = 2;
-  string path = 3;
-}
-
-message S3Identity {
-  string bucket_url = 1;
-  string bucket_name = 2;
-  string prefix = 3;
-}
-
-message OCIIdentity {
-  string registry_url = 1;
-  string repo = 2;
-}
-
-message FilesystemIdentity {
-  string server_url = 1;
-  string folder = 2;
-}
-
-message SourceIdentity {
-  oneof identity {
-    GitIdentity git = 2;
-    S3Identity s3 = 3;
-    OCIIdentity oci = 4;
-    FilesystemIdentity fs = 5;
-  }
-}
+// TODO
+message ReplayResponse {}
