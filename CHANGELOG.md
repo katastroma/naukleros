@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.4.0 - 2026-03-26
+#### Features
+- define RetrieveRequest - (3da3ac6) - Nathan Blair
+
+- - -
+
 ## 0.3.0 - 2026-03-24
 #### Features
 - allow replaying - (62a2e48) - Nathan Blair
