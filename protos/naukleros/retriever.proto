@@ -12,8 +12,10 @@ service RetrieverService {
   rpc Replay(ReplayRequest) returns (ReplayResponse);
 }
 
-// TODO
-message RetrieveRequest {}
+message RetrieveRequest {
+  string namespace = 1;
+  string watch_target_id = 2;
+}
 
 message RetrieveResponse {}
 
