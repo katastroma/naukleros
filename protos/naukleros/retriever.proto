@@ -20,7 +20,7 @@ message RetrieveRequest {
 message RetrieveResponse {}
 
 message ReplayRequest {
-  string run_id = 1;
+  string event_id = 1;
 }
 
 message ReplayResponse {}
