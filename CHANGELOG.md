@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.4.4 - 2026-03-30
+#### Bug Fixes
+- repharse watch -> source targets - (aed1157) - Nathan Blair
+
+- - -
+
 ## 0.4.3 - 2026-03-27
 #### Bug Fixes
 - replaying events not whatever "runs" are - (1c822ff) - Nathan Blair
