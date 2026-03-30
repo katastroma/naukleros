@@ -14,7 +14,7 @@ service RetrieverService {
 
 message RetrieveRequest {
   string namespace = 1;
-  string watch_target_id = 2;
+  string source_target_id = 2;
 }
 
 message RetrieveResponse {}
