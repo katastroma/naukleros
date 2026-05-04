@@ -10,3 +10,13 @@ plugins:
     out: go
     opt:
       - module=github.com/katastroma/naukleros
+
+  - local: protoc-gen-prost
+    out: rust/src/pb
+    opt:
+      - flat_output_dir=true
+
+  - local: protoc-gen-tonic
+    out: rust/src/pb
+    opt:
+      - flat_output_dir=true

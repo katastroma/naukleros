@@ -2,4 +2,7 @@
 buf = "latest"
 "cargo-binstall" = "latest"
 "cargo:cocogitto" = "latest"
+"cargo:protoc-gen-tonic" = "latest"
+"cargo:protoc-gen-prost" = "latest"
+"cargo:protoc-gen-prost-crate" = "latest"
 go = "latest"
